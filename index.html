@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration</title>
+        <style>
+            body {
+                font-family: 'Montserrat', sans-serif;;
+                background-image: url('bg.jpg'); 
+                background-size: cover;
+                background-position: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #03b1e1;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                text-align: center;
+                font-family: 'Montserrat', sans-serif;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            form {
+                display: grid;
+                grid-gap: 10px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                box-sizing: border-box;
+            }
+
+            input[type="file"] {
+                padding: 10px;
+            }
+
+            input[type="submit"] {
+                background-color: #4500bc;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+
+            select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+
+            input[type="file"] {
+                width: calc(100% - 22px); 
+                padding: 10px;
+                border: 1px solid #ccc; 
+                border-radius: 10px;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            #output {
+                margin-top: 20px;
+                padding: 20px;
+                background-color: #CAF4FF;
+                border-radius: 12px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border: 1px solid #ccc; 
+            }
+
+            #output h3 {
+                color: #333;
+                font-family:'Montserrat', sans-serif;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+        </style>
+     </head>
+
+    <body>
+        <div class="container">
+            <h2>Registration Form</h2>
+            <form id="registrationForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="Tanggal Lahir">Date of Birth</label>
+                <input type="date" id="Tanggal Lahir" name="Tanggal Lahir" required>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <label for="program">Jurusan</label>
+                <select id="program" name="program" required>
+                    <option value="">Select</option>
+                    <option value="IMT - ARTIFICIAL INTELEGENCE">IMT - ARTIFICIAL INTELEGENCE</option>
+                    <option value="IMT - APPLICATION DEVELOPMENT">IMT - APPLICATION DEVELOPMENT</option>
+                </select>
+
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" required>
+
+                <label for="IBU">Nama IBU</label>
+                <input type="text" id="IBU" name="IBU" required>
+
+                <label for="AYAH">Nama AYAH</label>
+                <input type="text" id="AYAH" name="AYAH" required>
+
+                <label for="photo">Photo</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+
+                <input type="submit" value="Register">
+            </form>
+            <div id="output"></div>
+        </div>
+
+        <script>
+            const form = document.getElementById('registrationForm');
+            const output = document.getElementById('output');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+
+                const formData = new FormData(form);
+                
+
+                const displayData = document.createElement('div');
+                displayData.innerHTML = '<h3>Submitted Data:</h3>';
+                formData.forEach((value, key) => {
+                    const p = document.createElement('p');
+                    p.innerHTML = `<strong>${key}:</strong> ${value}`;
+                    displayData.appendChild(p);
+                });
+                console.log("Submitted Data:");
+                formData.forEach((value, key) => {
+                    console.log(`${key}: ${value}`);
+                });
+
+                
+                output.innerHTML = '';
+                output.appendChild(displayData);
+                
+                
+                form.reset();
+            });
+        </script>
+    </body>
+</html>
